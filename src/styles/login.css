@@ -1,0 +1,102 @@
+body {
+  background-image: url('src/assets/bglog.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 460px;
+  border-radius: 40px;
+  padding: 30px 40px;
+  box-sizing: border-box;
+}
+
+.wrapper h2 {
+  text-align: center;
+  font-size: 36px;
+}
+
+.input-box {
+  position: relative;
+  width: 100%;
+  margin: 30px 0;
+}
+
+.input-box input {
+  width: 85%;
+  height: 100%;
+  font-size: large;
+  background: transparent;
+  border: 2px solid #111213;
+  border-radius: 40px;
+  color: rgb(14, 70, 126);
+  padding: 20px 45px 20px 20px;
+  outline: none;
+}
+
+.input-box input::placeholder {
+  color: rgb(194, 75, 7);
+}
+
+.input-box .icon {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 16px;
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  margin: -15px 0 15px;
+}
+
+.remember-forgot label input {
+  accent-color: #cfcc05;
+  margin-right: 20px;
+}
+
+.remember-forgot a {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+.wrapper button {
+  width: 100%;
+  height: 45px;
+  background-color: rgb(225, 229, 233);
+  border: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgb(170, 159, 5);
+  cursor: pointer;
+  font-size: 16px;
+  color: #ceaa0c;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.register-link {
+  font-size: 14.5px;
+  text-align: center;
+  margin: 20px 0 15px;
+}
+
+.register-link p a {
+  color: antiquewhite;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link p a:hover {
+  text-decoration: underline;
+}

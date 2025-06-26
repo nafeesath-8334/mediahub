@@ -1,0 +1,88 @@
+/* Full page background */
+body {
+  background-image: url('src/assets/bglog.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Main container */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+/* Card styling */
+.profile-card {
+  background:transparent;
+  border-radius: 40px;
+  padding: 30px 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 700px;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+
+
+.input-box1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.input-box1 label {
+  flex: 0 0 30%;
+  font-weight: bold;
+  color: #181414;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.input-box1 input {
+  flex: 1;
+  height: 45px;
+  font-size: 16px;
+  background: transparent;
+  border: 2px solid #111213;
+  border-radius: 12px;
+  color: rgb(14, 70, 126);
+  padding: 0 15px;
+  outline: none;
+}
+
+.input-box1 input::placeholder {
+  color: rgb(194, 75, 7);
+}
+
+/* Button */
+.profile-details button {
+  width: 100%;
+  height: 45px;
+  background-color: rgb(225, 229, 233);
+  border: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgb(170, 159, 5);
+  cursor: pointer;
+  font-size: 16px;
+  color: #ceaa0c;
+  font-weight: 700;
+  margin-top: 20px;
+}
