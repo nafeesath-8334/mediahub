@@ -6,6 +6,7 @@ import Register from './component/register'
 import Profile from './component/profile'
 import EditProfile from './component/editProfile'
 import Folder from './component/folder'
+import BookMark from './component/bookmark'
 
 function App() {
  
@@ -14,9 +15,10 @@ function App() {
     <><div>
         <Login/> 
         <Register/> 
-        <Profile/> 
-        <EditProfile/> 
-       <Folder/>
+        <Profile/>  
+         <EditProfile/>  
+        <Folder/>
+       <BookMark/>
 
     </div>
     

@@ -1,14 +1,13 @@
-
+import '../styles/style.css';
 
 const Folder=()=> {
   
   return (
-     <div className="folder-container">
-          <div className="profile-card">
-                <div className="profile-header"></div>
+     <div className="wrapper">
+          
                 <form action="">
                     <h2>Folder</h2>
-                    <div className="input-box1">
+                    <div className="input-box">
                         <label>FolderName</label>
                         <input type="text" placeholder="folderName" required />
                     </div>

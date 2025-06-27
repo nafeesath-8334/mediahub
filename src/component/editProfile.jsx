@@ -1,4 +1,4 @@
-import"../styles/editProfile.css"
+import"../styles/style.css"
 import { CiCamera } from "react-icons/ci";
 const EditProfile = () => {
   
@@ -37,13 +37,13 @@ const EditProfile = () => {
         </div>
 
         {/* Form Inputs */}
-        <div className="input-group">
+        <div className="input-box">
           <label>Email Address</label>
           <input type="email" value="user@example.com" disabled />
           <small>Email cannot be changed</small>
         </div>
 
-        <div className="input-group">
+        <div className="input-box">
           <label>Password</label>
           <input type="password" value="password123" disabled />
           <small>To change password, use reset option</small>
