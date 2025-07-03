@@ -1,29 +1,53 @@
 
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import Login from './component/login'
-import Register from './component/register'
-import Profile from './component/profile'
-import EditProfile from './component/editProfile'
-import Folder from './component/folder'
-import BookMark from './component/bookmark'
+import Login from './pages/login'
+import Register from './pages/register'
+import Profile from './pages/profile'
+import EditProfile from './pages/editProfile'
+import Folder from './pages/folder'
+import Bookmark from './pages/bookmark'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import ForgotPassword from './pages/forgotPassword'
+import ResetPassword from './pages/resetPassword'
+import Home from './pages/home'
+import { Provider } from 'react-redux'
+import ProtectedRoute from './provider/protectedRoute'
+import { store } from './reduxTool/store'
+import { ToastContainer } from 'react-toastify'
+
 
 function App() {
- 
+
 
   return (
-    <><div>
-        <Login/> 
-        <Register/> 
-        <Profile/>  
-         <EditProfile/>  
-        <Folder/>
-       <BookMark/>
+    <>
+      <BrowserRouter>
+        <Provider store={store}>
+          <Routes>
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={< Login />} />
+            <Route path='/forgotPassword' element={<ForgotPassword />} />
+            <Route path='/resetPassword' element={<ResetPassword />} />
+            <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path='/profile' element={< Profile />} />
+            <Route path='/editProfile' element={<EditProfile />} />
+            <Route path='/folder' element={<Folder />} />
+            <Route path='/bookmark' element={<Bookmark />} />
 
-    </div>
-    
+
+          </Routes>
+        </Provider>
+
+
+
+      </BrowserRouter>
+      <ToastContainer/>
+
+
     </>
   )
 }
+
 
 export default App
