@@ -76,8 +76,8 @@ const EditProfile = () => {
     </button>
     <button
       type="submit"
-      className="px-6 py-2 rounded-md bg-yellow-100 text-yellow-700 font-semibold shadow cursor-not-allowed"
-      disabled
+      className="px-6 py-2 rounded-md bg-yellow-100 text-yellow-700 font-semibold shadow "
+    
     >
       Saving...
     </button>

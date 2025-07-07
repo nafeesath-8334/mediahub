@@ -1,6 +1,25 @@
 import { IoBookmarksSharp } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { updateIsLoggedIn } from "../reduxTool/slice";
+import { useDispatch, useSelector } from "react-redux";
 const Navbar = () => {
+
+   const isLoggedIn = useSelector((state) => state.mediahub.isLoggedIn);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    dispatch(updateIsLoggedIn(!!token)); // Update global state on mount
+  }, [dispatch]);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userCredentials");
+    dispatch(updateIsLoggedIn(false));
+    navigate("/home");
+  };
   return (
     <nav className="sticky top-0 z-50 flex items-center justify-between px-8 py-3 shadow-md bg-white">
       {/* Left Section */}
@@ -21,21 +40,23 @@ const Navbar = () => {
           placeholder="Search bookmarks or folders..."
           className="w-[300px] px-4 py-2 rounded-md border-none text-base focus:outline-none"
         /><button >
-         <CiSearch />
+          <CiSearch />
         </button>
       </div>
-<div className="flex items-center space-x-4">
-        
-        <a href="/login" className="text-black font-medium hover:text-white transition">
-          login
-        </a>
+      <div className="flex items-center space-x-4">
+
+       {isLoggedIn ? (
+          <button onClick={logout} className="text-red-600 font-medium">Logout</button>
+        ) : (
+          <Link to="/login" className="text-green-600 font-medium">Login</Link>
+        )}
       </div>
       {/* Right Section */}
       <div className="flex items-center space-x-4">
         <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-md transition">
           + Create
         </button>
-        <a href="/login" className="text-black font-medium hover:text-white transition">
+        <a href="/profile" className="text-black font-medium hover:text-blue transition">
           Profile
         </a>
       </div>

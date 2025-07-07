@@ -7,7 +7,7 @@ import Profile from './pages/profile'
 import EditProfile from './pages/editProfile'
 import Folder from './pages/folder'
 import Bookmark from './pages/bookmark'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import ForgotPassword from './pages/forgotPassword'
 import ResetPassword from './pages/resetPassword'
 import Home from './pages/home'
@@ -25,11 +25,13 @@ function App() {
       <BrowserRouter>
         <Provider store={store}>
           <Routes>
+            {/* <Route path='/' element={<Navigate to="/home"/>} /> */}
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={< Login />} />
             <Route path='/forgotPassword' element={<ForgotPassword />} />
             <Route path='/resetPassword' element={<ResetPassword />} />
             <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />
+             <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path='/profile' element={< Profile />} />
             <Route path='/editProfile' element={<EditProfile />} />
             <Route path='/folder' element={<Folder />} />

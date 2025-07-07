@@ -11,7 +11,7 @@ const Login = () => {
      const [isLoading, setIsLoading] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const successnotify = () => toast("Registration successfull!", {
+    const successnotify = () => toast("Login successfull!", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -22,7 +22,7 @@ const Login = () => {
             theme: "light",
             //  transition: {Bounce},
         })
-        const errornotify = () => toast("Registration Failed! ", {
+        const errornotify = () => toast("Login Failed! ", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -54,8 +54,8 @@ const Login = () => {
                 const userCredentials = {
                    UserId: result.data.userDetails.userId,
                     Name: result.data.userDetails.FirstName,
-                    email: result.data.userDetails.email,
-                    password: result.data.userDetails.password,
+                    email: result.data.userDetails.Email,
+                    password: result.data.userDetails.Password,
                 }
                 localStorage.setItem("userCredentials", JSON.stringify(userCredentials))
                 localStorage.setItem("token", JSON.stringify(result.data.token))
