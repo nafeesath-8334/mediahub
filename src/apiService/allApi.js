@@ -33,3 +33,23 @@ export const getUser = async (userId) => {
     
     return await commonApi("GET", `${baseUrl}getUser/${userId}`, "")
 }
+export const editUserDetails = async (userId, userData, headers) => {
+    console.log(userData)
+    console.log(userId)
+    return await commonApi("PUT", `${baseUrl}editUserDetails/${userId}`, userData, headers);
+}
+export const editFolder = async (body) => {
+    return await commonApi("POST", `${baseUrl}editFolder`, body)
+}
+
+export const getforgotpswd = async (data) => {
+
+    console.log(data)
+    return await commonApi("POST", `${baseUrl}forgotPassword/`, data);
+}
+export const resetPassword = async (token, data) => {
+    return await commonApi("POST", `${baseUrl}resetPassword/${token}`, data);
+}
+export const deleteFolder= async (body) => {
+    return await commonApi("DELETE", `${baseUrl}deleteFolder`,body);
+};

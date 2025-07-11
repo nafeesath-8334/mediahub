@@ -9,12 +9,16 @@ import Folder from './pages/folder'
 import Bookmark from './pages/bookmark'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import ForgotPassword from './pages/forgotPassword'
-import ResetPassword from './pages/resetPassword'
+
 import Home from './pages/home'
 import { Provider } from 'react-redux'
 import ProtectedRoute from './provider/protectedRoute'
 import { store } from './reduxTool/store'
 import { ToastContainer } from 'react-toastify'
+import FolderList from './pages/folderList'
+import ResetPassword from './pages/resetPassword'
+
+
 
 
 function App() {
@@ -27,16 +31,16 @@ function App() {
           <Routes>
             {/* <Route path='/' element={<Navigate to="/home"/>} /> */}
             <Route path='/register' element={<Register />} />
-            <Route path='/login' element={< Login />} />
+            <Route path='/login' element={< Login/>} />
             <Route path='/forgotPassword' element={<ForgotPassword />} />
-            <Route path='/resetPassword' element={<ResetPassword />} />
+        <Route path='/resetPassword/:token' element={<ResetPassword />} />
             <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />
              <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path='/profile' element={< Profile />} />
             <Route path='/editProfile' element={<EditProfile />} />
             <Route path='/folder' element={<Folder />} />
             <Route path='/bookmark' element={<Bookmark />} />
-
+           <Route path='/folderList' element={<FolderList />} />
 
           </Routes>
         </Provider>

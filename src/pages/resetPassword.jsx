@@ -1,23 +1,42 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { resetPassword } from "../apiService/allApi";
+
 
 const ResetPassword = () => {
-  const [formData, setFormData] = useState({
-    password: "",
-    confirmPassword: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
+    const { token } = useParams(); 
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+const navigate=useNavigate()
+  const notifySuccess = () => toast.success("Password reset successful!");
+  const notifyError = (msg) => toast.error(msg || "Password reset failed.");
+console.log("1")
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle submission logic here
-    alert("Password reset link sent!");
+    console.log("2")
+console.log(password)
+    if (!password || !confirmPassword) {
+      return notifyError("Please fill in all fields.");
+    }
+
+    if (password !== confirmPassword) {
+      return notifyError("Passwords do not match.");
+    }
+
+    try {
+      const result = await resetPassword(token, {Password:password });
+      if (result.status === 200) {
+        notifySuccess();
+        navigate("/login")
+      } else {
+        notifyError("Reset failed.");
+      }
+    } catch (error) {
+      notifyError("Something went wrong.");
+    }
   };
+
 
   return (
     <div 
@@ -47,8 +66,8 @@ const ResetPassword = () => {
               name="password"
               type="password"
               required
-              value={formData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -66,23 +85,22 @@ const ResetPassword = () => {
               name="confirmPassword"
               type="password"
               required
-              value={formData.confirmPassword}
-              onChange={handleChange}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* Submit Button */}
-          <button
+         
+           <button
             type="submit"
             className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200"
           >
-            Send Reset Link
-          </button>
+             Reset
+          </button> 
         </form>
       </div>
     </div>
-  );
-};
-
-export default ResetPassword;
+  )
+}
+export default ResetPassword

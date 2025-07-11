@@ -1,4 +1,30 @@
+import { useState } from "react";
+import { getforgotpswd } from "../apiService/allApi";
+import { toast } from "react-toastify";
+
+
 const ForgotPassword = () => {
+  const [email, setEmail] = useState('');
+   const notifySuccess = () => toast.success("check your email....!");
+    const notifyError = (msg) => toast.error(msg || "reset failed!....");
+  
+      const handleSubmit = async (e) => {
+          e.preventDefault();
+  
+          try {
+              const result = await getforgotpswd({ Email:email });
+              if (result.status === 200) {
+                notifySuccess()
+                 
+                 
+                  
+              } else {
+                  notifyError()
+              }
+          } catch (error) {
+             notifyError()
+          }
+      };
   return (
     <div className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4" style={{ backgroundImage: "url('src/assets/bglog.jpg')" }}>
       <form className="w-full max-w-md bg-white/30 backdrop-blur-md p-8 rounded-3xl shadow-lg">
@@ -15,6 +41,8 @@ const ForgotPassword = () => {
             id="email"
             name="email"
             type="email"
+             value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="your.email@example.com"
             className="w-full px-4 py-2 border border-gray-400 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -24,6 +52,7 @@ const ForgotPassword = () => {
         <button
           type="submit"
           className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-200"
+          onClick={handleSubmit}
         >
           Send Reset Link
         </button>
