@@ -17,6 +17,8 @@ import { store } from './reduxTool/store'
 import { ToastContainer } from 'react-toastify'
 import FolderList from './pages/folderList'
 import ResetPassword from './pages/resetPassword'
+import EditBokmrk from './pages/editBokmrk'
+
 
 
 
@@ -41,7 +43,7 @@ function App() {
             <Route path='/folder' element={<Folder />} />
             <Route path='/bookmark' element={<Bookmark />} />
            <Route path='/folderList' element={<FolderList />} />
-
+           <Route path='/editBokmrk' element={<EditBokmrk />} />
           </Routes>
         </Provider>
 

@@ -33,10 +33,10 @@ export const getUser = async (userId) => {
     
     return await commonApi("GET", `${baseUrl}getUser/${userId}`, "")
 }
-export const editUserDetails = async (userId, userData, headers) => {
+export const editUser = async (userId, userData, headers) => {
     console.log(userData)
     console.log(userId)
-    return await commonApi("PUT", `${baseUrl}editUserDetails/${userId}`, userData, headers);
+    return await commonApi("PUT", `${baseUrl}editUser/${userId}`, userData, headers);
 }
 export const editFolder = async (body) => {
     return await commonApi("POST", `${baseUrl}editFolder`, body)
@@ -53,3 +53,12 @@ export const resetPassword = async (token, data) => {
 export const deleteFolder= async (body) => {
     return await commonApi("DELETE", `${baseUrl}deleteFolder`,body);
 };
+export const editBokmark = async (bookmarkId, bookmarkData, headers) => {
+  return await commonApi("PUT", `${baseUrl}editBokmrk/${bookmarkId}`, bookmarkData, headers);
+}
+
+export const deleteBokmrk = async (body) => {
+  return await commonApi("DELETE", `${baseUrl}deleteBokmrk`,body);
+};
+
+

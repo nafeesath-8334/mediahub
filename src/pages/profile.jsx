@@ -42,12 +42,12 @@ const Profile = () => {
     <>
    
      <div
-  className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+  className="flex justify-center  min-h-screen bg-cover bg-center bg-no-repeat"
   style={{ backgroundImage: "url('src/assets/bglog.jpg')" }}
 >
-  <div className="w-full max-w-4xl bg-white/20 backdrop-blur-md shadow-xl p-8 rounded-3xl">
-    <div className="bg-gradient-to-r from-blue-500 to-pink-200 px-6 py-4 rounded-2xl mb-6">
-      <h1 className="text-3xl font-bold text-white text-center">My Profile</h1>
+  <div className="w-full max-w-4xl bg-white/10 backdrop-blur-lg shadow-xl p-8 rounded-3xl">
+    <div >
+      <h1 className="text-3xl font-bold text-black text-center">My Profile</h1>
     </div>
 
     <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
@@ -81,8 +81,10 @@ const Profile = () => {
       {/* User Details */}
       <div className="flex-1 text-center md:text-left">
         <h2 className="text-2xl font-bold text-gray-800">
-          {user?.FirstName || "User Name"}
+          {user?.FirstName || "User Name"} {user?.LastName || "User Name"}
+
         </h2>
+        
         <p className="text-gray-600 mb-2">{user?.Email || "Email"}</p>
 
         <div className="flex flex-wrap gap-3 justify-center md:justify-start mt-4">

@@ -1,6 +1,9 @@
-import { useState, useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import { CiCamera } from "react-icons/ci";
 import { useLocation, useNavigate } from "react-router-dom";
+import {editUser} from'../apiService/allApi';
+import { toast } from "react-toastify";
 
 
 const EditProfile = () => {
@@ -19,7 +22,8 @@ const EditProfile = () => {
     Email: "",
     Password: "",
   });
-
+ const notifySuccess = () => toast.success("successfully updated....!");
+    const notifyError = (msg) => toast.error(msg || "updation failed!....");
   useEffect(() => {
     if (user) {
       setUserData({
@@ -56,10 +60,11 @@ const EditProfile = () => {
         authorization: `Bearer ${token}`,
       };
 
-      const response = await editUserDetails(userData.userId, formData, headers);
+      const response = await editUser(userData.userId,formData,headers)
       if (response.status === 200) {
-        const successMessage = document.getElementById("success-message");
-        if (successMessage) successMessage.classList.remove("hidden");
+        // const successMessage = document.getElementById("success-message");
+        // if (successMessage) successMessage.classList.remove("hidden");
+        notifySuccess()
         setTimeout(() => {
           navigate("/profile");
         }, 1500);
@@ -68,6 +73,7 @@ const EditProfile = () => {
       }
     } catch (error) {
       console.error("Error updating profile:", error);
+      notifyError()
       alert("An error occurred. Please try again.");
     } finally {
       setIsLoading(false);
@@ -81,7 +87,7 @@ const EditProfile = () => {
     >
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-md bg-white/20 backdrop-blur-md shadow-xl p-8 rounded-3xl"
+        className="w-full max-w-md bg-white/10 backdrop-blur-lg shadow-xl p-8 rounded-3xl"
       >
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Edit Profile</h2>
 

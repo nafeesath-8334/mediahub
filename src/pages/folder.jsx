@@ -1,8 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { addFolder, getBokmrks, getFolder } from "../apiService/allApi";
-import { addBokmrks } from "../apiService/allApi";
-import Bookmark from "./bookmark";
+import { toast } from "react-toastify";
 
 const Folder = () => {
   const [folders, setFolders] = useState([]);
@@ -11,7 +10,8 @@ const Folder = () => {
     folderName: "",
     userId: "",
   });
-
+ const notifySuccess = () => toast.success("added folder....!");
+    const notifyError = (msg) => toast.error(msg || " failed!!!....");
  
 
   useEffect(() => {
@@ -41,15 +41,19 @@ const Folder = () => {
       
       const res = await addFolder(folderData);
       if (res.status === 201) {
+      
         alert("Folder added successfully");
         setFolders((prev) => [...prev, { ...folderData }]);
         setFolderData((prev) => ({ ...prev, folderName: "" }));
+          notifySuccess()
       } else {
         alert("Failed to add folder");
+        notifyError()
       }
     } catch (err) {
       console.error("Error to add:", err);
       alert("Failed to add folder.");
+      notifyError()
     }
   };
 

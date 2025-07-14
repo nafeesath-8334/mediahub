@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { addBokmrks, getBokmrks, getFolder } from "../apiService/allApi";
+import { toast } from "react-toastify";
 
 const Bookmark = () => {
   const [folders, setFolders] = useState([]);
@@ -17,7 +18,8 @@ const Bookmark = () => {
     description: "",
     thumbnail: ""
   });
-
+ const notifySuccess = () => toast.success("successfull....!");
+    const notifyError = (msg) => toast.error(msg || " failed!....");
   const [bookmarks, setBookmarks] = useState([]);
 
   const fetchBookmarks = async () => {
@@ -73,6 +75,7 @@ const Bookmark = () => {
 
       if (res.status === 201) {
         alert("Bookmark added successfully!");
+        notifySuccess()
         setBookmarkData((prev) => ({
           ...prev,
           bookmarkUrl: "",
@@ -82,9 +85,10 @@ const Bookmark = () => {
         }));
         fetchBookmarks(); // ✅ Refresh bookmark list
       } else {
-        alert("Failed to add bookmark.");
+        alert("Failed to add bookmark.");notifyError()
       }
     } catch (error) {
+      notifyError()
       console.error("Error adding bookmark:", error);
       alert("Error adding bookmark.");
     }
@@ -174,7 +178,7 @@ return (
           Thumbnail URL
         </label>
         <input
-          type="url"
+          type="text"
           placeholder="https://example.com/image.jpg"
           value={bookmarkData.thumbnail}
           onChange={(e) =>
