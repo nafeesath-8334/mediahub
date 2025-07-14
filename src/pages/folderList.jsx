@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { deleteBokmrk, deleteFolder, editFolder, getBokmrks, getFolder } from "../apiService/allApi";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
-
+import { FaBookmark } from "react-icons/fa";
+import { FaFolder } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 const FolderList = () => {
   const navigate = useNavigate()
   const [folders, setFolders] = useState([]);
@@ -116,7 +118,7 @@ const handleDeleteBookmark = async (bokmrkId) => {
                 onChange={(e) => setEditedFolderName(e.target.value)}
               />
             ) : (
-              <h3 className="font-semibold">📁 {folder.folderName}</h3>
+              <h3 className="font-semibold"><FaFolder /> {folder.folderName}</h3>
             )}
 
             <div className="flex space-x-2 mt-2">
@@ -138,10 +140,10 @@ const handleDeleteBookmark = async (bokmrkId) => {
               ) : (
                 <>
                   <button onClick={() => handleEditFolder(folder.folderId, folder.folderName)} className="text-blue-600 hover:underline">
-                    Edit
+                   <FaEdit />
                   </button>
                   <button onClick={() => handleDeleteFolder(folder.folderId)} className="text-red-600 hover:underline">
-                    Delete
+                   <MdDelete />
                   </button>
                 </>
               )}
@@ -159,7 +161,7 @@ const handleDeleteBookmark = async (bokmrkId) => {
         <div className="flex flex-col space-y-2">
           <div className="flex justify-between">
             <div className="flex-1">
-              <a href={bm.url} target="_blank" rel="noopener noreferrer" className="text-blue-700 font-semibold">
+             <FaBookmark /> <a href={bm.url} target="_blank" rel="noopener noreferrer" className="text-blue-700 font-semibold">
                 {bm.title}
               </a>
               <p className="text-gray-700 text-sm">{bm.description}</p>
@@ -167,10 +169,10 @@ const handleDeleteBookmark = async (bokmrkId) => {
             </div>
             <div className="space-x-2 text-sm">
               <button onClick={() => navigate("/editBokmrk", { state: { bookmark: bm } })} className="text-blue-600 hover:underline">
-                Edit
+              <FaEdit /> 
               </button>
               <button onClick={() => handleDeleteBookmark(bm.bokmrkId)} className="text-red-600 hover:underline">
-                Delete
+               <MdDelete />
               </button>
             </div>
           </div>

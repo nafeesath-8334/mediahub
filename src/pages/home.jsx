@@ -42,8 +42,6 @@ const Home = () => {
 
   
  
-
- 
  
   return (
     <>
@@ -54,7 +52,7 @@ const Home = () => {
       style={{ backgroundImage: "url('src/assets/bglog.jpg')" }}
     >
       
-      <FolderList/>
+      <FolderList />
     </div>
  
 

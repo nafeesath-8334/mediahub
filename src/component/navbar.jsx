@@ -4,16 +4,18 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { updateIsLoggedIn } from "../reduxTool/slice";
 import { useDispatch, useSelector } from "react-redux";
+import { ImProfile } from "react-icons/im";
+import { CgProfile } from "react-icons/cg";
 const Navbar = () => {
 
-   const isLoggedIn = useSelector((state) => state.mediahub.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.mediahub.isLoggedIn);
   const navigate = useNavigate()
   const dispatch = useDispatch()
   useEffect(() => {
     const token = localStorage.getItem("token");
     dispatch(updateIsLoggedIn(!!token)); // Update global state on mount
   }, [dispatch]);
-
+  
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userCredentials");
@@ -34,18 +36,10 @@ const Navbar = () => {
       </div>
 
       {/* Center Section */}
-      <div>
-        <input
-          type="text"
-          placeholder="Search bookmarks or folders..."
-          className="w-[300px] px-4 py-2 rounded-md border-none text-base focus:outline-none"
-        /><button >
-          <CiSearch />
-        </button>
-      </div>
+      
       <div className="flex items-center space-x-4">
 
-       {isLoggedIn ? (
+        {isLoggedIn ? (
           <button onClick={logout} className="text-red-600 font-medium">Logout</button>
         ) : (
           <Link to="/login" className="text-green-600 font-medium">Login</Link>
@@ -53,11 +47,11 @@ const Navbar = () => {
       </div>
       {/* Right Section */}
       <div className="flex items-center space-x-4">
-        <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-md transition">
-          + Create
+        <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-md transition" onClick={()=>{navigate('/register')}}>
+         +<ImProfile /> 
         </button>
         <a href="/profile" className="text-black font-medium hover:text-blue transition">
-          Profile
+          <CgProfile />
         </a>
       </div>
     </nav>
