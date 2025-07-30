@@ -74,7 +74,7 @@ const Login = () => {
     }
     return (
 
-        <div className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('src/assets/bglog.jpg')" }}>
+        <div className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url("/pexels-jplenio-1103970.jpg")' }}>
             <form onSubmit={handleLogin} className="w-full max-w-md bg-white/20 backdrop-blur-md shadow-xl p-8 rounded-3xl">
                 <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Login</h2>
 
@@ -86,7 +86,7 @@ const Login = () => {
                         value={userDetails.Email}
                         onChange={(e)=>setUserDetails({...userDetails,Email:e.target.value})}
                         required
-                        className="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 bg-transparent text-gray-800 placeholder-orange-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        className="w-full px-4 py-3 pl-10 rounded-lg border border-gray-500 bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400"
                     />
                     <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
                 </div>
@@ -99,22 +99,31 @@ const Login = () => {
                         value={userDetails.Password}
                         onChange={(e)=>setUserDetails({...userDetails,Password:e.target.value})}
                         required
-                        className="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 bg-transparent text-gray-800 placeholder-orange-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        className="w-full px-4 py-3 pl-10 rounded-lg border border-gray-500 bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400"
                     />
                     <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
                 </div>
 
                 {/* Remember Me and Forgot Password */}
                 <div className="flex justify-between text-sm text-gray-800 mb-6">
-                   <a href="forgotPassword" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                   <a href="forgotPassword" className="text-sm font-medium text-gray-600 hover:text-indigo-500">
                                     Forgot password?
                                 </a>
                 </div>
                 <button
                     type="submit"
-                    className="w-full bg-gray-200 hover:bg-gray-300 text-blue-700 font-bold py-3 rounded-full shadow-md transition mt-6"
+                    className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-3 rounded-full shadow-md transition mt-6"
                 >Login</button>
+                 <div className="mt-6 text-center">
+                <p className="text-sm text-gray-700">
+                    Don't have an account?{" "}
+                    <a href="/register" className="text-gray-900 hover:underline">
+                        Register
+                    </a>
+                </p>    
+            </div>
             </form>
+           
             <ToastContainer
         position="top-right" // or "bottom-left", "top-center", etc.
         autoClose={3000}

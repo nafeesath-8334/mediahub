@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom"; // to get bookmark data passed via navigate
 import { toast } from "react-toastify";
 import { editBokmark, getBokmrks, getFolder } from "../apiService/allApi";
+import Navbar from "../component/navbar";
+import Footer from "../component/footer";
 
 const EditBokmrk = () => {
   const location = useLocation();
@@ -69,18 +71,13 @@ const navigate=useNavigate()
       const headers = {
          "Content-Type": "multipart/form-data",
         authorization: `Bearer ${token}`,
-        // do NOT set "Content-Type" manually!
+     
       };
 
       const res = await editBokmark(bookmarkData.bokmrkId, formData, headers);
 
 
-      // const token = JSON.parse(localStorage.getItem("token"));
-      // const headers = {
-      //   "Content-Type": "multipart/form-data",
-      //   authorization: `Bearer ${token}`,
-      // };
-      // const res = await editBokmark(bookmarkData.bokmrkId, bookmarkData,headers);
+    
       if (res.status === 200) {
         navigate('/folderList')
         notifySuccess();
@@ -94,8 +91,10 @@ const navigate=useNavigate()
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat p-4"
-      style={{ backgroundImage: "url('src/assets/bglog.jpg')" }}>
+    <>
+    <Navbar/>
+      <div className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat p-4"
+      style={{ backgroundImage: 'url("/pexels-jplenio-1103970.jpg")' }}>
       <form onSubmit={handleEditBookmark} className="w-full max-w-md bg-white/20 backdrop-blur-md shadow-xl p-8 rounded-3xl mb-8">
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">Edit Bookmark</h2>
         <div className="mb-4">
@@ -158,6 +157,8 @@ const navigate=useNavigate()
         </button>
       </form>
     </div>
+    <Footer/></>
+  
   );
 };
 export default EditBokmrk;

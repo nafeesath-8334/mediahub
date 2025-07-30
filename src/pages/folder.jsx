@@ -1,7 +1,11 @@
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { addFolder, getBokmrks, getFolder } from "../apiService/allApi";
 import { toast } from "react-toastify";
+import Navbar from "../component/navbar";
+import Footer from "../component/footer";
+import { useNavigate } from "react-router-dom";
+
 
 const Folder = () => {
   const [folders, setFolders] = useState([]);
@@ -10,9 +14,14 @@ const Folder = () => {
     folderName: "",
     userId: "",
   });
+   const token = JSON.parse(localStorage.getItem("token"));
+      const headers = {
+        // "content-type": "application/json",
+        authorization: `Bearer ${token}`,
+         }
  const notifySuccess = () => toast.success("added folder....!");
     const notifyError = (msg) => toast.error(msg || " failed!!!....");
- 
+  const navigate=useNavigate()
 
   useEffect(() => {
     const fetchUserAndFolders = async () => {
@@ -24,7 +33,7 @@ const Folder = () => {
         
       
         try {
-          const result = await getFolder(userId);
+          const result = await getFolder(userId,headers);
           setFolders(result.data.data || []);
         } catch (err) {
           console.error("Error fetching folders:", err);
@@ -38,14 +47,16 @@ const Folder = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+     
       
-      const res = await addFolder(folderData);
+      const res = await addFolder(folderData,headers)
       if (res.status === 201) {
       
         alert("Folder added successfully");
         setFolders((prev) => [...prev, { ...folderData }]);
         setFolderData((prev) => ({ ...prev, folderName: "" }));
           notifySuccess()
+          navigate("/folderList")
       } else {
         alert("Failed to add folder");
         notifyError()
@@ -60,9 +71,11 @@ const Folder = () => {
   
 
   return (
+    <>
+    <Navbar/>
     <div
       className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat p-4"
-      style={{ backgroundImage: "url('src/assets/bglog.jpg')" }}
+      style={{ backgroundImage: 'url("/pexels-jplenio-1103970.jpg")' }}
     >
       {/* Folder Form */}
       <form
@@ -105,6 +118,8 @@ const Folder = () => {
 
 
     </div>
+    
+    <Footer/></>
     
   );
 };

@@ -41,9 +41,7 @@ console.log(password)
   return (
     <div 
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat font-['Poppins',sans-serif]"
-      style={{
-        backgroundImage: "url('src/assets/bglog.jpg')" 
-      }}>
+      style={{ backgroundImage: 'url("/pexels-jplenio-1103970.jpg")' }}>
       <div className="w-full max-w-md bg-white rounded-3xl shadow-md p-8">
         <form onSubmit={handleSubmit}  className="w-full max-w-md bg-white/20 backdrop-blur-md shadow-xl p-8 rounded-3xl">
           <h3 className="text-2xl font-bold text-center text-gray-800 mb-2">

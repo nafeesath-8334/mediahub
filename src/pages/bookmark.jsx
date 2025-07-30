@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 import { addBokmrks, getBokmrks, getFolder } from "../apiService/allApi";
 import { toast } from "react-toastify";
+import Navbar from "../component/navbar";
+import Footer from "../component/footer";
+import { useNavigate } from "react-router-dom";
 
 const Bookmark = () => {
   const [folders, setFolders] = useState([]);
   const [userData, setUserData] = useState({});
-  // const [folderData, setFolderData] = useState({
-  //   folderName: "",
-  //   userId: "",
-  // });
+  const navigate=useNavigate()
 
   const [bookmarkData, setBookmarkData] = useState({
     folderId: "",
@@ -70,12 +70,17 @@ const Bookmark = () => {
         description,
         thumbnail
       };
-
-      const res = await addBokmrks(userId, data);
+const token = JSON.parse(localStorage.getItem("token"));
+      const headers = {
+        // "content-type": "application/json",
+        authorization: `Bearer ${token}`,
+         }
+      const res = await addBokmrks(userId, data,headers);
 
       if (res.status === 201) {
         alert("Bookmark added successfully!");
         notifySuccess()
+        
         setBookmarkData((prev) => ({
           ...prev,
           bookmarkUrl: "",
@@ -83,7 +88,9 @@ const Bookmark = () => {
           description: "",
           thumbnail: "",
         }));
-        fetchBookmarks(); // ✅ Refresh bookmark list
+        fetchBookmarks();
+         // ✅ Refresh bookmark list
+         navigate("/folderList")
       } else {
         alert("Failed to add bookmark.");notifyError()
       }
@@ -95,8 +102,10 @@ const Bookmark = () => {
   };
 
 return (
-  <div className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat p-4"
-      style={{ backgroundImage: "url('src/assets/bglog.jpg')" }}
+  <>
+  <Navbar/>
+   <div className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat p-4"
+      style={{ backgroundImage: 'url("/pexels-jplenio-1103970.jpg")' }}
    >
     <form 
       onSubmit={handleAddBookmark}
@@ -196,6 +205,9 @@ return (
       </button>
     </form>
 </div> 
+  <Footer/>
+  </>
+ 
 )
 }
 export default Bookmark

@@ -26,7 +26,7 @@ const ForgotPassword = () => {
           }
       };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4" style={{ backgroundImage: "url('src/assets/bglog.jpg')" }}>
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4" style={{ backgroundImage: 'url("/pexels-jplenio-1103970.jpg")' }}>
       <form className="w-full max-w-md bg-white/30 backdrop-blur-md p-8 rounded-3xl shadow-lg">
         <h3 className="text-2xl font-semibold text-center text-gray-900 mb-2">Forgot Password?</h3>
         <p className="text-sm text-center text-gray-700 mb-6">
