@@ -18,6 +18,7 @@ import { ToastContainer } from 'react-toastify'
 import FolderList from './pages/folderList'
 import ResetPassword from './pages/resetPassword'
 import EditBokmrk from './pages/editBokmrk'
+import { CgLogIn } from 'react-icons/cg'
 
 
 
@@ -31,19 +32,19 @@ function App() {
       <BrowserRouter>
         <Provider store={store}>
           <Routes>
-            {/* <Route path='/' element={<Navigate to="/home"/>} /> */}
+         
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={< Login/>} />
             <Route path='/forgotPassword' element={<ForgotPassword />} />
         <Route path='/resetPassword/:token' element={<ResetPassword />} />
-            <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path='/' element={<ProtectedRoute><Login /></ProtectedRoute>} />
              <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>} />
-            <Route path='/profile' element={< Profile />} />
-            <Route path='/editProfile' element={<EditProfile />} />
-            <Route path='/folder' element={<Folder />} />
-            <Route path='/bookmark' element={<Bookmark />} />
-           <Route path='/folderList' element={<FolderList />} />
-           <Route path='/editBokmrk' element={<EditBokmrk />} />
+            <Route path='/profile' element={<ProtectedRoute>< Profile /></ProtectedRoute>} />
+            <Route path='/editProfile' element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
+            <Route path='/folder' element={<ProtectedRoute><Folder /></ProtectedRoute>} />
+            <Route path='/bookmark' element={<ProtectedRoute><Bookmark /></ProtectedRoute>} />
+           <Route path='/folderList' element={<ProtectedRoute><FolderList /></ProtectedRoute>} />
+           <Route path='/editBokmrk' element={<ProtectedRoute><EditBokmrk /></ProtectedRoute>} />
           </Routes>
         </Provider>
 
